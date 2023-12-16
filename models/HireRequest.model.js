@@ -1,33 +1,35 @@
 const mongoose = require("mongoose");
 
-const hireRequestSchema = new mongoose.Schema({
+const hireRequestSchema = new mongoose.Schema(
+  {
     projectId: {
-        type: mongoose.Schema.ObjectId,
-        ref: "project", 
+      type: mongoose.Schema.ObjectId,
+      ref: "project",
     },
     freelancerId: {
-        type: mongoose.Schema.ObjectId,
-        ref: "user",
-        // unique: true,
+      type: mongoose.Schema.ObjectId,
+      ref: "user",
+      // unique: true,
     },
     clientId: {
-        type: mongoose.Schema.ObjectId,
-        ref: "user",
+      type: mongoose.Schema.ObjectId,
+      ref: "user",
     },
     duration: {
-        type: Number,
+      type: Number,
     },
     hourlyRate: {
-        type: Number,
+      type: Number,
     },
     description: {
-        type: String,
+      type: String,
     },
     hireRequestStatus: {
-        type: String,
-        enum: ['rejected', 'agreed']
-    }
-}, 
-{ timestamps: true })
+      type: String,
+      enum: ["rejected", "agreed"],
+    },
+  },
+  { timestamps: true }
+);
 
 module.exports = mongoose.model("hireRequest", hireRequestSchema);

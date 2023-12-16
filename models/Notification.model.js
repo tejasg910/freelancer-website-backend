@@ -1,42 +1,49 @@
 const mongoose = require("mongoose");
 
-const notificationSchema = new mongoose.Schema({
-    triggeredBy :{
-        type: mongoose.Schema.ObjectId,
-        ref: "user",
+const notificationSchema = new mongoose.Schema(
+  {
+    triggeredBy: {
+      type: mongoose.Schema.ObjectId,
+      ref: "user",
     },
-    notify :{
-        type: mongoose.Schema.ObjectId,
-        ref: "user",
-    }, 
-    notificationMessage :{
-        type: String,
-        req: true
+    notify: {
+      type: mongoose.Schema.ObjectId,
+      ref: "user",
+    },
+    notificationMessage: {
+      type: String,
+      req: true,
     }, // project applied "project title " by "user name"
-    isRead :{
-        type: Boolean, 
-        default: false,
+    isRead: {
+      type: Boolean,
+      default: false,
     },
     projectId: {
-        type: mongoose.Schema.ObjectId,
-        ref: "project",
+      type: mongoose.Schema.ObjectId,
+      ref: "project",
+    },
+    hireRequestId: {
+      type: mongoose.Schema.ObjectId,
+      ref: "hireRequest",
     },
     notificationType: {
-        type: String,
-        enum : 
-        [
-            'jobApplication', 
-            'hireRequest', 
-            'review', 
-            'applicantHired', 
-            "applicantRejected", 
-            "agreeHireRequest", 
-            "rejectedHireRequest",
-            "message"
-        ],
-        required: true,
-    }
-},
-{ timestamps: true })
+      type: String,
+      enum: [
+        "jobApplication",
+        "hireRequest",
+        "review",
+        "applicantHired",
+        "applicantRejected",
+        "agreeHireRequest",
+        "rejectedHireRequest",
+        "message",
+        "hired",
+        "rejected",
+      ],
+      required: true,
+    },
+  },
+  { timestamps: true }
+);
 
-module.exports = mongoose.model("notification", notificationSchema)
+module.exports = mongoose.model("notification", notificationSchema);
